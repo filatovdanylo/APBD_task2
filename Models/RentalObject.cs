@@ -14,8 +14,8 @@ namespace APBD_TASK2.Models
         public User User { get; set; }
         public DateTime RentalDate { get; set; }
         public DateTime DueTime { get; set; }
-        public DateTime? returnDate { get; set; }
-        public double Penalty { get; set; }
+        public DateTime? ReturnDate { get; set; }
+        public decimal Penalty { get; set; }
         public RentalObject(User user, Equipment equipment)
         {
             User = user;

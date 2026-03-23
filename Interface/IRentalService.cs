@@ -9,7 +9,6 @@ namespace APBD_TASK2.Interface
 {
     public interface IRentalService
     {
-        void AddUser(User user);
         void AddEquipment(Equipment equipment);
 
         List<Equipment> GetEquipment();

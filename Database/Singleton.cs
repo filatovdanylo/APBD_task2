@@ -10,6 +10,8 @@ namespace APBD_TASK2.Database
 {
     public class Singleton
     {
+
+        
         private static Singleton? _instance;
         public static Singleton Instance
         {
@@ -24,5 +26,8 @@ namespace APBD_TASK2.Database
 
         public List<Equipment> Equipment { get; } = new();
         public List<User> Users { get; } = new();
+        public List<RentalObject> RentalObjects { get; } = new();
+
+
     }
 }
