@@ -11,8 +11,8 @@ namespace APBD_TASK2.Controller
     public class AppController
     {
 
-        private static IRentalService _service = null!;
-        public static void Run(RentalService service)
+        private static IEquipmentService _service = null!;
+        public static void Run(EquipmentService service)
         {
             _service = service;
 
@@ -23,6 +23,8 @@ namespace APBD_TASK2.Controller
                 // do something
             }
         }
+
+        private static void 
 
         private static void ShowMenu()
         {

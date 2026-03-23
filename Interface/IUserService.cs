@@ -10,5 +10,7 @@ namespace APBD_TASK2.Interface
     public interface IUserService
     {
         void AddUser(User user);
+        User? GetUserById(int id);
+        List<User> GetAllUsers();
     }
 }

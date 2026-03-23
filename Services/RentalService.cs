@@ -1,4 +1,5 @@
 ﻿using APBD_TASK2.Database;
+using APBD_TASK2.Enum;
 using APBD_TASK2.Interface;
 using APBD_TASK2.Models;
 using System;
@@ -11,40 +12,51 @@ namespace APBD_TASK2.Services
 {
     public class RentalService : IRentalService
     {
-        
+
         private readonly Singleton _repository;
 
-        public RentalService()
+        public RentalService(Singleton repository)
         {
-            _repository = Singleton.Instance;
+            _repository = repository;
         }
 
-        public void AddEquipment(Equipment equipment)
-        {
-            if (equipment == null) throw new ArgumentNullException(nameof(equipment));
-            if (_repository.Equipment.Any(e => e.Id == equipment.Id))
-                throw new InvalidOperationException("Equipment already exists");
-
-            _repository.Equipment.Add(equipment);
-        }
-
-        
         public string GenerateReport()
         {
             throw new NotImplementedException();
         }
 
-        public List<Equipment> getAllAvailableEquipment()
+        public List<RentalObject> GetActiveRentalsForUser(int userId)
         {
-            var listOfAvailableEquipment = _repository.Equipment
-                .Where(e => e.Status == Enum.EquipmentStatus.Available)
-                .ToList();
-            return listOfAvailableEquipment;
+            return _repository.RentalObjects
+                .Where(r => r.User.Id == userId && r.ReturnDate == null).ToList();
         }
 
-        public List<Equipment> GetEquipment()
+        public List<RentalObject> GetOverdueRentals()
         {
-            return _repository.Equipment.ToList();
+            return _repository.RentalObjects
+                .Where(r => r.ReturnDate == null && DateTime.Now > r.DueTime).ToList();
+        }
+
+        public RentalObject RentEquipment(int userId, int equipmentId)
+        {
+            var user = _repository.Users.FirstOrDefault(u => u.Id == userId) 
+                ?? throw new InvalidOperationException($"User {userId} not found");
+            var equipment = _repository.Equipment.FirstOrDefault(e => e.Id == equipmentId)
+                ?? throw new InvalidOperationException($"Equipment {equipmentId} not found");
+            if (equipment.Status != EquipmentStatus.Available)
+            {
+                throw new InvalidOperationException($"{equipment.Name} is not available");    
+            }
+
+            var rental = new RentalObject(user, equipment);
+            equipment.Status = EquipmentStatus.Rented;
+            _repository.RentalObjects.Add(rental);
+            return rental;
+        }
+
+        public RentalObject ReturnEquipment(int rentalId)
+        {
+            //TODO
         }
     }
 }

@@ -9,10 +9,10 @@ namespace APBD_TASK2.Interface
 {
     public interface IRentalService
     {
-        void AddEquipment(Equipment equipment);
-
-        List<Equipment> GetEquipment();
-        List<Equipment> getAllAvailableEquipment();
+        RentalObject RentEquipment(int userId, int equipmentId);
+        RentalObject ReturnEquipment(int rentalId);
+        List<RentalObject> GetActiveRentalsForUser(int userId);
+        List<RentalObject> GetOverdueRentals();
         string GenerateReport();
     }
 }
