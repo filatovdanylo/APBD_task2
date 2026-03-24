@@ -214,7 +214,7 @@ namespace APBD_TASK2.Controller
             Console.Write("Equipment ID: ");
             int id = ReadInt("Equipment ID");
             _equipmentService.MarkEquipmentUnavailable(id);
-            Console.WriteLine($"Equipment #{id} marked as unavailable.");
+            Console.WriteLine($"Equipment #{id} marked as unavailable");
         }
 
         private static void ActiveRentalsForUser()
@@ -237,7 +237,7 @@ namespace APBD_TASK2.Controller
         {
             var rentals = _rentalService.GetOverdueRentals();
             if (!rentals.Any()) { 
-                Console.WriteLine("No overdue rentals."); 
+                Console.WriteLine("No overdue rentals found"); 
                 return; 
             }
 

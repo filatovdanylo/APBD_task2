@@ -18,9 +18,11 @@ namespace APBD_TASK2.Models
         public decimal Penalty { get; set; }
         public RentalObject(User user, Equipment equipment)
         {
+            Id = _nextId++;
             User = user;
             Equipment = equipment;
             RentalDate = DateTime.Now;
+            DueTime = RentalDate.AddDays(7);
         }
     }
 }
