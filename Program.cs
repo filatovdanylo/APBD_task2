@@ -2,5 +2,7 @@
 using APBD_TASK2.Database;
 using APBD_TASK2.Services;
 
-var service = new EquipmentService();
-AppController.Run(service);
+var equipmentService = new EquipmentService();
+var userService = new UserService();
+var rentalService = new RentalService();
+AppController.Run(equipmentService, rentalService, userService);

@@ -16,9 +16,9 @@ namespace APBD_TASK2.Services
 
         private readonly Singleton _repository;
 
-        public RentalService(Singleton repository)
+        public RentalService()
         {
-            _repository = repository;
+            _repository = Singleton.Instance;
         }
 
         public string GenerateReport()
