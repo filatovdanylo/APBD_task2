@@ -1,0 +1,6 @@
+In this project I tried to follow good programming practices, separating input logic from the execution logic and domain logic. 
+I used Controller -> Service -> Repository type of logic, where each layer has a set of separate responsibilities. The AppController receives user input and based on it calls corresponding methods inside three different services (UserService, EquipmentService and RentalService). 
+The services are responsible for working with singleton database (repository). Inside service layer all business logic is also checked and exception are propagated to the Controller layer if any error occur. UserService is responsible for user-related logic, EquipmentService for equipment logic and
+RentalService is responsible for the rental system as a whole (renting, returning, generating reports). 
+Also, classes inside my program are loosely coupled, since I leveraged interfaces and introduced constructor injection (a kind of). Because of that, all components are interchangeable. All components are also cohesive, since each of them is used for one specific purpose.
+I implemented DataSeeder class, that inserts sample data every time the application is started. Also, I used separate Policy classes that imposes businness rules that can be easily changed.
