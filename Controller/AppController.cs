@@ -71,7 +71,6 @@ namespace APBD_TASK2.Controller
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
-                    Console.WriteLine(ex.StackTrace);
                 }
             }
         }
@@ -229,7 +228,7 @@ namespace APBD_TASK2.Controller
             foreach (var r in rentals)
             {
                 bool overdue = DateTime.Now > r.DueTime;
-                Console.WriteLine($"{r.Id,-5} {r.Equipment.Name,-25} {r.RentalDate:yyyy-MM-dd,-14} {r.DueTime:yyyy-MM-dd,-14} {(overdue ? "YES" : "no")}");
+                Console.WriteLine($"{r.Id,-5} {r.Equipment.Name,-25} {r.RentalDate:yyyy-MM-dd}-{r.DueTime:yyyy-MM-dd} {(overdue ? "YES" : "no")}");
             }
         }
 
